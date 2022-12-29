@@ -1,0 +1,5 @@
+{
+  "rootPath": "D:/B031_MadWar/_Workfiles/Houdini/ByssMobile/ByssMobile_MadWar",
+  "exportPath": "Assets/HoudiniEngineAssetCache/Baked",
+  "tools": ["LVLTool", "Scatter"]
+}

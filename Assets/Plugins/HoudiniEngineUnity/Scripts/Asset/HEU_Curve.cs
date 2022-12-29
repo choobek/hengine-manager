@@ -37,6 +37,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("HoudiniEngineUnityEditor")]
 [assembly: InternalsVisibleTo("HoudiniEngineUnityEditorTests")]
 [assembly: InternalsVisibleTo("HoudiniEngineUnityPlayModeTests")]
+[assembly: InternalsVisibleTo("Assembly-CSharp")]
 #endif
 
 namespace HoudiniEngineUnity

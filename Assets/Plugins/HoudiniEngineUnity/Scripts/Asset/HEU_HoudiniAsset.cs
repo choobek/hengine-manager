@@ -43,6 +43,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("HoudiniEngineUnityEditor")]
 [assembly: InternalsVisibleTo("HoudiniEngineUnityEditorTests")]
 [assembly: InternalsVisibleTo("HoudiniEngineUnityPlayModeTests")]
+[assembly: InternalsVisibleTo("Assembly-CSharp-Editor")]
+[assembly: InternalsVisibleTo("Assembly-CSharp")]
 #endif
 
 
@@ -192,8 +194,10 @@ namespace HoudiniEngineUnity
 	/// <inheritdoc />
 	public HAPI_NodeId AssetID { get { return _assetID; } }
 
-	/// <inheritdoc />
-	public string AssetPath { get { return _assetPath; } }
+    public string ExportPath { get { return _exportPath; } set { _exportPath = value; } }
+
+    /// <inheritdoc />
+    public string AssetPath { get { return _assetPath; } }
 
 	/// <inheritdoc />
 	public GameObject OwnerGameObject { get { return this.gameObject; } }
@@ -272,7 +276,10 @@ namespace HoudiniEngineUnity
 
 	[SerializeField]
 	private HAPI_NodeId _assetID = HEU_Defines.HEU_INVALID_NODE_ID;
-
+    
+	[SerializeField]
+    private string _exportPath;
+    
 	[SerializeField]
 	private string _assetPath;
 
@@ -3862,7 +3869,7 @@ namespace HoudiniEngineUnity
 	    return null;
 	}
 
-	private void InvokeBakedEvent(bool bSuccess, List<GameObject> outputObjects, bool isNewBake)
+	public void InvokeBakedEvent(bool bSuccess, List<GameObject> outputObjects, bool isNewBake)
 	{
 	    if (_bakedDataEvent != null)
 	    {
@@ -3879,7 +3886,7 @@ namespace HoudiniEngineUnity
 	/// <param name="bakedAssetPath">Reference to the new clone's asset path, or empty if not filled in.</param>
 	/// <param name="bWriteMeshesToAssetDatabase">Whether to write meshes to persistant storage (asset database)</param>
 	/// <returns>The new gameobject containing the cloned data</returns>
-	private GameObject CloneAssetWithoutHDA(ref string bakedAssetPath, bool bWriteMeshesToAssetDatabase, bool bReconnectPrefabInstances)
+	public GameObject CloneAssetWithoutHDA(ref string bakedAssetPath, bool bWriteMeshesToAssetDatabase, bool bReconnectPrefabInstances)
 	{
 	    GameObject newRoot = null;
 
